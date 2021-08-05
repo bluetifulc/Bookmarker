@@ -1,0 +1,31 @@
+{
+  "name": "bookmarker",
+  "version": "1.0.0",
+  "description": "Node(Express) project for the website help using bookmark.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vectorch-dev/Bookmarker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vectorch-dev/Bookmarker/issues"
+  },
+  "homepage": "https://github.com/vectorch-dev/Bookmarker#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.13.5"
+  },
+  "devDependencies": {
+    "@types/ejs": "^3.0.7",
+    "@types/express": "^4.17.13",
+    "@types/method-override": "^0.0.32",
+    "@types/mongoose": "^5.11.97"
+  }
+}
