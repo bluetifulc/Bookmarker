@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <%- include("../partials/head")%>
+        <title>Sign Up</title>
+    </head>
+    <body>
+        <%- include("../partials/nav")%>
+        <div class="container mb-3 bg-light">
+            <h3 class="contentBoxTop mt-3 mb-3">New User</h3>
+            <form action="/user" method="POST">
+                <div class="form-group row">
+                    <label for="username" class="col-sm-3 col-form-label">Username</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="username" name="username" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="nickname" class="col-sm-3 col-form-label">Nickname</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="nickname" name="nickname" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="col-sm-3 col-form-label">Password</label>
+                    <div class="col-sm-9">
+                        <input type="password" id="password" name="password" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="confirmationPassword" class="col-sm-3 col-form-label">Cofirmation Password</label>
+                    <div class="col-sm-9">
+                        <input type="password" id="confirmationPassword" name="confirmationPassword" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-secondary">Submit</button>
+                </div>
+                <input type="hidden" name="salt" value="0">
+                
+            </form>
+        </div>
+    </body>
+</html>
