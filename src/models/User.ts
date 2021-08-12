@@ -71,3 +71,4 @@ userSchema.path('password').validate(function(this:VirtualUserDocument){
 
 let User = mongoose.model('user', userSchema);
 export default User;
+export {VirtualUserDocument, VirtualUserSchema};
