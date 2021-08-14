@@ -4,6 +4,8 @@ import session from "express-session";
 import configJSON from "./config.json";
 import Controller from "./controllers/Controller";
 import errorMiddleware from "./middlewares/ErrorMiddleware";
+import cookieParser from 'cookie-parser';
+import AuthNavMiddleware from "./middlewares/AuthNavMiddleware";
 
 class App{
     public app: express.Application;
@@ -35,10 +37,12 @@ class App{
     }
     private intializeMiddlewares(){
         this.app.set('view engine', 'ejs');
-        this.app.use(express.static('public'));
+        this.app.use(express.static('/public'));
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended:true}));
-        this.app.use(session({secret:configJSON.SESSION_SECRET_KEY, resave: false, saveUninitialized: true}));
+        // this.app.use(session({secret:configJSON.SESSION_SECRET_KEY, resave: false, saveUninitialized: true}));
+        this.app.use(cookieParser());
+        this.app.use(AuthNavMiddleware);
     }
     private intializeControllers(controllers: Controller[]){
         controllers.forEach((controller)=>{

@@ -13,6 +13,7 @@ const cryptoModel = {
             });
         });
     },
+
     getPasswordAndSalt: function(password: string): Promise<HashedPassword>{
         return new Promise(async (resolve, reject)=>{
             const salt = await cryptoModel.createSalt();
@@ -25,6 +26,11 @@ const cryptoModel = {
                 });
             });
         });
+    },
+
+    getPasswordUsingSalt: async function(password: string, salt: string){
+        const hashedPassword = await crypto.pbkdf2Sync(password,salt,10007,64,'sha512').toString('base64');
+        return hashedPassword;
     }
 }
 

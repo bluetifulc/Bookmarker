@@ -6,10 +6,14 @@ class HomeController implements Controller{
     public router: express.Router = express.Router();
     constructor(){
         this.router.get('/', this.getIndex);
+        this.router.get('/about', this.getAbout);
     }
 
     private getIndex(req: express.Request, res: express.Response){
         res.render('home/index');
+    }
+    private getAbout(req: express.Request, res: express.Response){
+        res.render('home/about');
     }
 }
 

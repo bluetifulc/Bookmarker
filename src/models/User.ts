@@ -1,5 +1,7 @@
 import mongoose, { mongo, Mongoose, Schema } from 'mongoose';
 import { HashedPassword, cryptoModel } from '../crypto';
+import UserInterface from '../interfaces/UserInterface';
+
 interface VirtualUserSchema extends mongoose.Schema{
     _confirmationPassword: string,
 }
@@ -69,6 +71,6 @@ userSchema.path('password').validate(function(this:VirtualUserDocument){
     }
 });
 
-let User = mongoose.model('user', userSchema);
+let User = mongoose.model<UserInterface & mongoose.Document>('user', userSchema);
 export default User;
 export {VirtualUserDocument, VirtualUserSchema};
