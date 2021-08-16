@@ -4,6 +4,7 @@ import Controller from './Controller';
 import UserService from '../services/UserService';
 import LoginDTO from '../DTO/LoginDTO';
 import WrongCredentialException from '../exceptions/WrongCredentialException';
+import AuthMiddleware from '../middlewares/AuthMiddleware';
 
 class UserController implements Controller{
     public mainPath: string = '/user';
@@ -15,7 +16,8 @@ class UserController implements Controller{
         this.router.get('/', this.getHome);
         this.router.get('/signup', this.getSignUp);
         this.router.get('/login', this.getLogin);
-        this.router.get('/logout', this.getLogout);
+        this.router.get('/logout', AuthMiddleware, this.getLogout);
+        this.router.get('/account', AuthMiddleware, this.getAccount);
         this.router.post('/', this.postHome.bind(this));
         this.router.post('/login', this.postLogin.bind(this));
     }
@@ -35,6 +37,10 @@ class UserController implements Controller{
     private getLogout(req: express.Request, res: express.Response){
         res.cookie("_userid", "", {maxAge:0});
         res.redirect("/");
+    }
+
+    private getAccount(req: express.Request, res: express.Response){
+        res.render('user/account');
     }
     
     private async postHome(req: express.Request, res: express.Response, next: express.NextFunction) {

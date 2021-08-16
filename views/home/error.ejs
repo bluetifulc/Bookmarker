@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <title>ERROR!</title>
+        <%- include("../partials/head")%>
+    </head>
+    <body>
+        <%- include("../partials/nav")%>
+        <div class="bg-light p-5 border rounded-3">
+            <h2>에러가 발생하였습니다!</h2>
+            <h3>server code: <%=status%></h3>
+            <div class="ellipis">
+                <%=msg%>
+            </div>
+        </div>
+    </body>
+</html>

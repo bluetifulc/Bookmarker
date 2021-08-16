@@ -14,6 +14,7 @@ async function AuthMiddleware(req: Request, res: Response, next: NextFunction){
             const user = await User.findById(id);
             if(user){
                 req.user = user;
+                res.locals.nickname = user.nickname;
                 next();
             }else{
                 next(new WrongAuthException());

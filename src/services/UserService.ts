@@ -8,7 +8,7 @@ import UserInterface from "../interfaces/UserInterface";
 import LoginDTO from "../DTO/LoginDTO";
 import WrongCredentialException from "../exceptions/WrongCredentialException";
 import TokenInterface from "../interfaces/TokenInterface";
-
+// TODO # apply refresh token
 class UserService{
     private user = User;
     public async register(data: UserDTO){
@@ -22,7 +22,11 @@ class UserService{
         if(!userdata) throw new WrongCredentialException();
         const hashedPassword = await cryptoModel.getPasswordUsingSalt(data.password, userdata.salt);
         if(hashedPassword !== userdata.password) throw 'error';
-        const token = await jwt.sign({ _id: userdata._id }, configJSON.JWT_SECRET_KET, { expiresIn: '1m'});
+        const token = await jwt.sign(
+            { _id: userdata._id, nickname: userdata.nickname }, 
+            configJSON.JWT_SECRET_KET, 
+            { expiresIn: '1m'}
+        );
         return token;
     }
 }
